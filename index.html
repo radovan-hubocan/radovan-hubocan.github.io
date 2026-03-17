@@ -1,295 +1,291 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radovan Hubočan - Online Vizitka</title>
-    <style>
-        /* Moderná farebná paleta pre tmavý režim */
-        :root {
-            --bg-color: #07070a;
-            --card-bg: #12121a;
-            --text-primary: #f0f0f5;
-            --text-secondary: #a0a0b5;
-            --border-color: #2a2a3f;
-            /* Farebné akcenty */
-            --accent-cyan: #00e5ff;
-            --accent-purple: #bd00ff;
-            --gradient-primary: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radovan Hubočan | Vizitka</title>
+  <meta
+    name="description"
+    content="Minimalistická responzívna online vizitka študenta a OSINT analytika."
+  />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f3f4f6;
+      --muted: #a7b0bd;
+      --accent: #58a6ff;
+      --accent-soft: #7ee787;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      --radius: 20px;
+      --max-width: 760px;
+    }
 
-        /* Reset a základné nastavenia */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: "Times New Roman", Times, serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
-            background-image: radial-gradient(circle at top right, rgba(189, 0, 255, 0.05), transparent 40%),
-                              radial-gradient(circle at bottom left, rgba(0, 229, 255, 0.05), transparent 40%);
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        /* Hlavný kontajner vizitky */
-        .card {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 550px;
-            padding: 50px 40px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
-                        0 0 20px rgba(0, 229, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
+    body {
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(88, 166, 255, 0.12), transparent 28%),
+        linear-gradient(180deg, #0d1117 0%, #11161d 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 32px 16px;
+      line-height: 1.55;
+    }
 
-        /* Farebná linka na vrchu vizitky */
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
+    .card {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
-        /* Hlavička - Meno a pozícia */
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .top-line {
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: normal;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
+    .content {
+      padding: 34px;
+    }
 
-        .position {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    .name {
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
 
-        /* Kontakt - hneď pod hlavičkou */
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            font-size: 1.15rem;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 30px;
-        }
+    .role {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
 
-        .contact-info a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-        }
+    .institutions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 18px;
+    }
 
-        .contact-info a:hover {
-            color: var(--accent-cyan);
-        }
+    .institution {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+    }
 
-        /* Nastavenie sekcií */
-        section {
-            margin-bottom: 35px;
-        }
+    .institution.uni {
+      color: #9ee6b3;
+      background: rgba(126, 231, 135, 0.10);
+      border-color: rgba(126, 231, 135, 0.22);
+    }
 
-        section:last-child {
-            margin-bottom: 0;
-        }
+    .institution.nbu {
+      color: #8cc8ff;
+      background: rgba(88, 166, 255, 0.10);
+      border-color: rgba(88, 166, 255, 0.22);
+    }
 
-        h2 {
-            font-size: 1rem;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
+    .org {
+      margin-bottom: 20px;
+    }
 
-        h2::after {
-            content: "";
-            flex-grow: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border-color), transparent);
-            margin-left: 15px;
-        }
+    .org strong {
+      display: block;
+      font-size: 1.06rem;
+      margin-bottom: 4px;
+    }
 
-        /* Pracovisko / Pôsobisko (namiesto CV vzdelania) */
-        .workplace {
-            background-color: rgba(255, 255, 255, 0.02);
-            border-left: 3px solid var(--accent-purple);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-        }
+    .org span {
+      color: var(--accent-soft);
+      font-weight: 600;
+    }
 
-        .workplace-univ {
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 22px 0;
+    }
 
-        .workplace-fac {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
+    .section-title {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
 
-        .workplace-prog {
-            color: var(--accent-cyan);
-            font-size: 0.95rem;
-            margin-top: 6px;
-            font-style: italic;
-        }
+    .text {
+      color: var(--text);
+      font-size: 1rem;
+    }
 
-        /* Certifikácie */
-        .certifications {
-            list-style: none;
-            padding-left: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+    .muted {
+      color: var(--muted);
+    }
 
-        .certifications li {
-            position: relative;
-            padding-left: 20px;
-            color: var(--text-primary);
-            font-size: 1.05rem;
-        }
+    .list {
+      display: grid;
+      gap: 10px;
+    }
 
-        .certifications li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: var(--accent-purple);
-            font-size: 1.2rem;
-            top: -2px;
-        }
+    .item strong {
+      color: var(--text);
+    }
 
-        /* Zručnosti */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+    .item a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
 
-        .skill-tag {
-            background-color: rgba(0, 229, 255, 0.05);
-            color: var(--text-primary);
-            padding: 6px 18px;
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            border-radius: 30px;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
+    .item a:hover {
+      text-decoration: underline;
+    }
 
-        .skill-tag:hover {
-            background: var(--gradient-primary);
-            border-color: transparent;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(189, 0, 255, 0.2);
-            cursor: default;
-        }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
 
-        /* Responzivita pre menšie obrazovky */
-        @media (max-width: 480px) {
-            .card {
-                padding: 40px 25px;
-            }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-            h1 {
-                font-size: 2rem;
-            }
+    .footer {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
 
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 12px;
+      }
 
-            .workplace-univ {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+      .content {
+        padding: 24px;
+      }
+
+      .role {
+        font-size: 1rem;
+      }
+
+      .text,
+      .item,
+      .chip {
+        font-size: 0.96rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content {
+        padding: 20px;
+      }
+
+      .name {
+        font-size: 1.8rem;
+      }
+
+      .divider {
+        margin: 18px 0;
+      }
+
+      .institutions {
+        gap: 8px;
+        margin: 0 0 16px;
+      }
+
+      .institution {
+        width: 100%;
+        justify-content: flex-start;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <main class="card">
+    <div class="top-line"></div>
 
-    <main class="card">
-        <!-- Sekcia: Meno a pozícia -->
-        <header>
-            <h1>Radovan Hubočan</h1>
-            <div class="position">OSINT analytik | študent</div>
-        </header>
+    <section class="content">
+      <h1 class="name">Radovan Hubočan</h1>
+      <p class="role">Študent / OSINT analytik</p>
 
-        <!-- Sekcia: Kontakt (Riadok pod hlavičkou) -->
-        <div class="contact-info">
-            <a href="tel:+421904202022">📱 0904 20 20 22</a>
-            <a href="mailto:hubocan4@stud.uniza.sk">✉️ hubocan4@stud.uniza.sk</a>
+      <div class="institutions">
+        <span class="institution uni">Žilinská univerzita v Žiline</span>
+        <span class="institution nbu">Národný bezpečnostný úrad</span>
+      </div>
+
+      <div class="org">
+        <strong>Žilina, Slovensko</strong>
+        <span>Web development • Python aplikácie • Kybernetická bezpečnosť</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <section>
+        <h2 class="section-title">O mne</h2>
+        <p class="text">
+          Venujem sa vývoju webových a desktopových aplikácií. Zaujímam sa o Python,
+          JavaScript, HTML/CSS, návrh systémov, prácu s dátami a tvorbu praktických riešení
+          s dôrazom na prehľadnosť, čistý dizajn a použiteľnosť.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section>
+        <h2 class="section-title">Oblasti zamerania</h2>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Threat Intelligence</span>
+          <span class="chip">HTML</span>
+          <span class="chip">SOCMINT</span>
+          <span class="chip">JSON</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Kybernetická bezpečnosť</span>
         </div>
+      </section>
 
-        <!-- Sekcia: Pôsobisko (namiesto štandardného vzdelania) -->
-        <section>
-            <h2>Pôsobisko</h2>
-            <div class="workplace">
-                <div class="workplace-univ">Žilinská univerzita v Žiline</div>
-                <div class="workplace-fac">Fakulta bezpečnostného inžinierstva</div>
-                <div class="workplace-prog">Bezpečnostný manažment - informačná bezpečnosť</div>
-            </div>
-        </section>
+      <div class="divider"></div>
 
-        <!-- Sekcia: Certifikácie -->
-        <section>
-            <h2>Certifikácie</h2>
-            <ul class="certifications">
-                <li>CISCO CCNA1</li>
-                <li>CISCO CCNA2</li>
-                <li>CompTIA Security+</li>
-            </ul>
-        </section>
+      <section>
+        <h2 class="section-title">Kontakt</h2>
+        <div class="list">
+          <div class="item"><strong>E-mail:</strong> <a href="mailto:hubocan4@stud.uniza.sk">hubocan4@stud.uniza.sk</a></div>
+          <div class="item"><strong>GitHub:</strong> <a href="https://github.com/radovan-hubocan" target="_blank" rel="noopener noreferrer">github.com/radovan-hubocan</a></div>
+          <div class="item"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/tvojprofil" target="_blank" rel="noopener noreferrer">linkedin.com/in/tvojprofil</a></div>
+        </div>
+      </section>
 
-        <!-- Sekcia: Zručnosti -->
-        <section>
-            <h2>Zručnosti</h2>
-            <div class="skills-container">
-                <span class="skill-tag">Programovací jazyk Python</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">bash</span>
-                <span class="skill-tag">SOCMINT</span>
-                <span class="skill-tag">Threat Intelligence</span>
-            </div>
-        </section>
-    </main>
-
+      <p class="footer">© 2026 Radovan Hubočan</p>
+    </section>
+  </main>
 </body>
 </html>
